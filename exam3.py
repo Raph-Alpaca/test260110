@@ -6,14 +6,7 @@
 # --------------------------------------------------
 
 import streamlit as st
-from supabase import create_client, Client
-import uuid
 
-@st.cache_resource
-def get_supabase_client() -> Client:
-    url = st.secrets["SUPABASE_URL"]
-    key = st.secrets["SUPABASE_SERVICE_ROLE_KEY"]  # 서버 전용(절대 노출 금지)
-    return create_client(url, key)
 # ── 1. 수업 제목 ──
 st.title("예시 수업 제목")  # ← 교과별 제목으로 자유롭게 수정하세요.
 
@@ -79,42 +72,6 @@ if "gpt_feedbacks" not in st.session_state:
     st.session_state.gpt_feedbacks = None
 if "gpt_payload" not in st.session_state:
     st.session_state.gpt_payload = None
-    # ==============================
-    # Supabase 저장 (안1: 고정 컬럼)
-    # ==============================
-    try:
-        supabase = get_supabase_client()
-
-        # 여러 번 제출을 명확히 "행 단위로 누적"하기 위한 제출 ID(선택)
-        submit_id = str(uuid.uuid4())
-
-        row = {
-            "student_id": st.session_state.gpt_payload["student_id"],
-
-            "answer_1": st.session_state.gpt_payload["answers"]["Q1"],
-            "answer_2": st.session_state.gpt_payload["answers"]["Q2"],
-            "answer_3": st.session_state.gpt_payload["answers"]["Q3"],
-
-            "feedback_1": st.session_state.gpt_payload["feedbacks"]["Q1"],
-            "feedback_2": st.session_state.gpt_payload["feedbacks"]["Q2"],
-            "feedback_3": st.session_state.gpt_payload["feedbacks"]["Q3"],
-
-            "guideline_1": st.session_state.gpt_payload["guidelines"]["Q1"],
-            "guideline_2": st.session_state.gpt_payload["guidelines"]["Q2"],
-            "guideline_3": st.session_state.gpt_payload["guidelines"]["Q3"],
-
-            "model": st.session_state.gpt_payload["model"],
-            # created_at은 DB default(now()) 사용
-        }
-
-        supabase.table("student_submissions").insert(row).execute()
-        st.success("✅ Supabase에 저장 완료 (제출 이력이 누적됩니다).")
-
-    except KeyError as e:
-        st.error(f"secrets 설정 누락: {e} (SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY 확인)")
-    except Exception as e:
-        st.error(f"Supabase 저장 오류: {e}")
-
 
 # ── 1. 문항별 채점 기준(교사가 자유롭게 수정) ──
 GRADING_GUIDELINES = {
@@ -235,6 +192,5 @@ if st.session_state.gpt_feedbacks:
             st.success(f"**문항 {i}** : {fb}")
         else:
             st.info(f"**문항 {i}** : {fb}")
-
 
     st.success("모든 피드백이 생성되었습니다. (DB 저장용 데이터 준비 완료)")
