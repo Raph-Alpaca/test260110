@@ -21,25 +21,25 @@
 
 ```mermaid
 graph TD
-    %% 노드 정의
+    %% 노드 정의 (특수문자 포함 시 따옴표 권장)
     ST[👨‍🎓 학생]
-    APP(📝 Streamlit Web App<br/>학생 평가 화면)
+    APP("📝 Streamlit Web App<br/>학생 평가 화면")
     GPT{🤖 OpenAI GPT API}
-    DB[(🗄️ Supabase DB<br/>결과 데이터 저장)]
+    DB[("🗄️ Supabase DB<br/>결과 데이터 저장")]
     TE[👩‍🏫 교사]
-    DASH(📊 교사 대시보드<br/>데이터 확인 화면)
+    DASH("📊 교사 대시보드<br/>데이터 확인 화면")
 
     %% 학생 흐름 (제출 및 피드백)
-    ST -->|1. 학번/답안 입력 및 제출| APP
-    APP -->|2. 답안 전송 및 채점 요청| GPT
-    GPT -->|3. O/X 및 피드백 반환| APP
-    APP -->|4. 전체 데이터(Payload) 저장| DB
-    APP -.->|5. 결과 화면 확인| ST
+    ST -->|"1. 학번/답안 입력 및 제출"| APP
+    APP -->|"2. 답안 전송 및 채점 요청"| GPT
+    GPT -->|"3. O/X 및 피드백 반환"| APP
+    APP -->|"4. 전체 데이터(Payload) 저장"| DB
+    APP -.->|"5. 결과 화면 확인"| ST
 
     %% 교사 흐름 (조회)
-    TE -->|6. 대시보드 접속| DASH
-    DASH -->|7. 데이터 조회 요청| DB
-    DB -.->|8. 학생별 결과 데이터 반환| DASH
+    TE -->|"6. 대시보드 접속"| DASH
+    DASH -->|"7. 데이터 조회 요청"| DB
+    DB -.->|"8. 학생별 결과 데이터 반환"| DASH
 
     %% 스타일 정의
     style APP fill:#FF4B4B,stroke:#333,stroke-width:2px,color:white
