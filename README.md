@@ -1,27 +1,32 @@
-📝 Streamlit 서술형 평가 앱 (with GPT-4o Feedback)
+# 📝 Streamlit 서술형 평가 앱 (with GPT-5 Feedback)
 
 <div align="center">
 
-교사 연수용 단일 파일(app.py) 서술형 평가 및 AI 피드백 시스템 예시입니다.
+![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white)
+![OpenAI](https://img.shields.io/badge/OpenAI-412991?style=for-the-badge&logo=OpenAI&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)
 
+**교사 연수용 단일 파일(`app.py`) 서술형 평가 및 AI 피드백 시스템 예시입니다.**
 
-
-
-
-학생이 답안을 제출하면 AI가 즉시 채점하고 피드백을 제공합니다.
 
 </div>
 
-🧐 프로젝트 개요
+---
 
-이 프로젝트는 기존의 수동 채점 방식에서 벗어나, OpenAI GPT API를 활용해 실시간으로 학생들에게 피드백을 제공하는 웹 애플리케이션입니다.
+## 🧐 프로젝트 개요
 
-1. To-Be: AI 기반 자동화 모델 (확장 아키텍처)
+이 프로젝트는 학생들이 서술형 답안을 제출하면, OpenAI GPT API가 즉시 채점(O/X)하고 피드백을 제공하는 웹 애플리케이션입니다.
 
-아래 다이어그램은 Supabase DB 및 교사 대시보드까지 확장했을 때의 이상적인 전체 아키텍처를 보여줍니다.
+### 왜 이 도구가 필요한가요? (업무 흐름 비교)
 
+AI와 데이터베이스를 도입했을 때 교사의 업무가 어떻게 변화하는지 시각적으로 비교해 보세요.
+
+#### 1. To-Be: AI 도입 모델 (제안 방식)
+교사는 평가 업무에서 해방되어 **대시보드 모니터링**에 집중할 수 있으며, 데이터는 자동으로 축적됩니다.
+
+```mermaid
 graph TD
-    %% 노드 정의
+    %% 노드 정의 (특수문자 포함 시 따옴표 권장)
     ST[👨‍🎓 학생]
     APP("📝 Streamlit Web App<br/>학생 평가 화면")
     GPT{🤖 OpenAI GPT API}
@@ -46,11 +51,7 @@ graph TD
     style GPT fill:#412991,stroke:#333,stroke-width:2px,color:white
     style DB fill:#3ECF8E,stroke:#333,stroke-width:2px,color:white
     style DASH fill:#FF9F1C,stroke:#333,stroke-width:2px,color:white
-
-
-2. As-Is: 기존 수동 평가 모델
-
-교사가 채점, 기록, 피드백 작성의 모든 과정을 수동으로 처리하여 **업무 병목(Bottleneck)**이 발생하는 구조입니다.
+```
 
 graph TD
     %% 노드 정의
@@ -75,46 +76,3 @@ graph TD
     style PAPER fill:#fff,stroke:#333,stroke-dasharray: 5 5
     style TE_OLD fill:#FF9F1C,stroke:#333,stroke-width:4px
     style WORK fill:#ffcccc,stroke:#333,stroke-width:2px,color:red
-
-
-🚀 시작하기 (Getting Started)
-
-1. 환경 설정 (Prerequisites)
-
-이 프로젝트를 실행하기 위해서는 Python 3.10 이상과 OpenAI API Key가 필요합니다.
-
-# 가상환경 생성 (선택 사항)
-python -m venv venv
-source venv/bin/activate  # Mac/Linux
-venv\Scripts\activate     # Windows
-
-
-2. 라이브러리 설치
-
-pip install streamlit openai
-# Supabase 연동 시 추가 설치: pip install supabase
-
-
-3. API Key 설정
-
-프로젝트 루트 경로에 .streamlit/secrets.toml 파일을 생성하거나 환경 변수를 설정하세요.
-
-.streamlit/secrets.toml 예시:
-
-[openai]
-api_key = "sk-proj-..."
-
-
-4. 앱 실행
-
-streamlit run app.py
-
-
-📂 파일 구조
-
-📦 streamlit-essay-feedback
- ┣ 📂 .streamlit
- ┃ ┗ 📜 secrets.toml    # API Key 저장 (Git 업로드 금지)
- ┣ 📜 app.py            # 메인 애플리케이션 코드
- ┣ 📜 requirements.txt  # 의존성 패키지 목록
- ┗ 📜 README.md         # 프로젝트 문서
