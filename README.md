@@ -54,11 +54,11 @@ graph TD
 ```
 ```mermaid
 graph TD
-    %% 노드 정의
+    %% 노드 정의 (특수문자 포함 시 반드시 따옴표 사용)
     ST_OLD[👨‍🎓 학생]
-    PAPER[📄 답안지/LMS<br/>(종이 또는 파일 제출)]
+    PAPER["📄 답안지/LMS<br/>(종이 또는 파일 제출)"]
     TE_OLD[👩‍🏫 교사]
-    WORK(✍️ 수동 채점 및<br/>피드백 작성)
+    WORK("✍️ 수동 채점 및<br/>피드백 작성")
 
     %% 흐름 정의
     ST_OLD -->|"1. 답안 작성 및 제출"| PAPER
@@ -71,7 +71,7 @@ graph TD
     %% 피드백 전달 (지연됨을 암시)
     TE_OLD -->|"5. 결과 통보 (시간 소요)"| ST_OLD
 
-    %% 스타일 정의 (회색조 사용으로 대비 효과)
+    %% 스타일 정의
     style ST_OLD fill:#eee,stroke:#333,stroke-width:2px
     style PAPER fill:#fff,stroke:#333,stroke-dasharray: 5 5
     style TE_OLD fill:#FF9F1C,stroke:#333,stroke-width:4px
