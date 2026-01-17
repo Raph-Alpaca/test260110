@@ -52,7 +52,7 @@ graph TD
     style DB fill:#3ECF8E,stroke:#333,stroke-width:2px,color:white
     style DASH fill:#FF9F1C,stroke:#333,stroke-width:2px,color:white
 ```
-
+```mermaid
 graph TD
     %% 노드 정의
     ST_OLD[👨‍🎓 학생]
@@ -76,3 +76,4 @@ graph TD
     style PAPER fill:#fff,stroke:#333,stroke-dasharray: 5 5
     style TE_OLD fill:#FF9F1C,stroke:#333,stroke-width:4px
     style WORK fill:#ffcccc,stroke:#333,stroke-width:2px,color:red
+```
