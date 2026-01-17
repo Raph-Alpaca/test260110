@@ -41,3 +41,28 @@ graph TD
     style GPT fill:#412991,stroke:#333,stroke-width:2px,color:white
     style DB fill:#3ECF8E,stroke:#333,stroke-width:2px,color:white
     style DASH fill:#FF9F1C,stroke:#333,stroke-width:2px,color:white
+
+
+graph TD
+    %% 노드 정의
+    ST_OLD[👨‍🎓 학생]
+    PAPER[📄 답안지/LMS<br/>(종이 또는 파일 제출)]
+    TE_OLD[👩‍🏫 교사]
+    WORK(✍️ 수동 채점 및<br/>피드백 작성)
+
+    %% 흐름 정의
+    ST_OLD -->|"1. 답안 작성 및 제출"| PAPER
+    PAPER -->|"2. 답안 수거"| TE_OLD
+    
+    %% 교사의 반복 업무 강조
+    TE_OLD -->|"3. 일일이 읽고 O/X 판정"| WORK
+    WORK -.->|"4. 학생별 피드백 수기 작성"| TE_OLD
+    
+    %% 피드백 전달 (지연됨을 암시)
+    TE_OLD -->|"5. 결과 통보 (시간 소요)"| ST_OLD
+
+    %% 스타일 정의 (회색조/단조로운 색상 사용으로 '기존 방식' 느낌 강조)
+    style ST_OLD fill:#eee,stroke:#333,stroke-width:2px
+    style PAPER fill:#fff,stroke:#333,stroke-dasharray: 5 5
+    style TE_OLD fill:#FF9F1C,stroke:#333,stroke-width:4px
+    style WORK fill:#ffcccc,stroke:#333,stroke-width:2px,color:red
