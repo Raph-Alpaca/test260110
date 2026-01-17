@@ -43,6 +43,11 @@ graph TD
     style DASH fill:#FF9F1C,stroke:#333,stroke-width:2px,color:white
 
 
+2. As-Is: 기존 수동 평가 모델
+교사가 채점, 기록, 피드백 작성의 모든 과정을 수동으로 처리하여 **업무 병목(Bottleneck)**이 발생합니다.
+
+코드 스니펫
+
 graph TD
     %% 노드 정의
     ST_OLD[👨‍🎓 학생]
@@ -61,7 +66,7 @@ graph TD
     %% 피드백 전달 (지연됨을 암시)
     TE_OLD -->|"5. 결과 통보 (시간 소요)"| ST_OLD
 
-    %% 스타일 정의 (회색조/단조로운 색상 사용으로 '기존 방식' 느낌 강조)
+    %% 스타일 정의 (회색조 사용으로 대비 효과)
     style ST_OLD fill:#eee,stroke:#333,stroke-width:2px
     style PAPER fill:#fff,stroke:#333,stroke-dasharray: 5 5
     style TE_OLD fill:#FF9F1C,stroke:#333,stroke-width:4px
