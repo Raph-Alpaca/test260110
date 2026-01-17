@@ -42,12 +42,14 @@ graph TD
     style DB fill:#3ECF8E,stroke:#333,stroke-width:2px,color:white
     style DASH fill:#FF9F1C,stroke:#333,stroke-width:2px,color:white
 
+---
 
 2. As-Is: 기존 수동 평가 모델
 교사가 채점, 기록, 피드백 작성의 모든 과정을 수동으로 처리하여 **업무 병목(Bottleneck)**이 발생합니다.
 
 코드 스니펫
 
+```mermaid
 graph TD
     %% 노드 정의
     ST_OLD[👨‍🎓 학생]
